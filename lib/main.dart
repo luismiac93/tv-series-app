@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tv_series_app/routes/routes.dart';
+import 'package:tv_series_app/theme/theme.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'TV Series App',
       initialRoute: 'welcome',
+      theme: themeApp,
       routes: appRoutes,
     );
   }
