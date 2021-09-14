@@ -26,7 +26,8 @@ class WelcomeScreen extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                CustomButton(AppColors.white, 'Log in', () {}),
+                CustomButton(AppColors.white, 'Log in',
+                    () => Navigator.pushNamed(context, 'login')),
                 const SizedBox(
                   height: 30,
                 ),
