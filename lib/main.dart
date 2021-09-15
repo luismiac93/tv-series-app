@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:tv_series_app/Auth/repository/auth_repository.dart';
 import 'package:tv_series_app/routes/routes.dart';
 import 'package:tv_series_app/theme/theme.dart';
 
@@ -10,12 +12,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light
         .copyWith(statusBarColor: Colors.transparent));
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'TV Series App',
-      initialRoute: 'splash',
-      theme: themeApp,
-      routes: appRoutes,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (BuildContext context) => AuthRepository(),
+        )
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'TV Series App',
+        initialRoute: 'welcome',
+        theme: themeApp,
+        routes: appRoutes,
+      ),
     );
   }
 }

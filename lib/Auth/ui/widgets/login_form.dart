@@ -4,14 +4,16 @@ import 'package:tv_series_app/widgets/custom_button.dart';
 import 'package:tv_series_app/widgets/custom_field.dart';
 
 class LoginForm extends StatelessWidget {
+  final TextEditingController nameController;
+  final TextEditingController passwordController;
+  final VoidCallback onPress;
   const LoginForm({
     Key? key,
     required this.nameController,
     required this.passwordController,
+    required this.onPress
   }) : super(key: key);
 
-  final TextEditingController nameController;
-  final TextEditingController passwordController;
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +61,7 @@ class LoginForm extends StatelessWidget {
               CustomButton(
                 AppColors.white,
                 'Log in',
-                () {
-                  Navigator.pushNamed(context, 'home');
-                },
+                onPress,
               ),
               const SizedBox(
                 height: 40,
