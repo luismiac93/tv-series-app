@@ -5,8 +5,17 @@ class CustomButton extends StatelessWidget {
   final Color color;
   final String title;
   final VoidCallback onPress;
+  final double size;
+  final double fontSize;
+  final double verticalspacing;
 
-  const CustomButton(this.color, this.title, this.onPress);
+  const CustomButton(
+      {required this.color,
+      required this.title,
+      required this.onPress,
+      this.size = 220,
+      this.fontSize = 22,
+      this.verticalspacing = 12});
 
   @override
   Widget build(BuildContext context) {
@@ -14,20 +23,22 @@ class CustomButton extends StatelessWidget {
       pressedOpacity: 0.95,
       padding: EdgeInsets.zero,
       child: Container(
-        width: 220,
+        width: size,
         child: Center(
           child: Text(
             title,
             style: TextStyle(
               color: AppColors.black,
-              fontSize: 22,
+              fontSize: fontSize,
             ),
           ),
         ),
-        padding: const EdgeInsets.symmetric(vertical: 12),
+        padding: EdgeInsets.symmetric(vertical: verticalspacing),
         decoration: BoxDecoration(
             color: color,
-            boxShadow: [BoxShadow(color: AppColors.black.withOpacity(0.6), blurRadius: 5)],
+            boxShadow: [
+              BoxShadow(color: AppColors.black.withOpacity(0.6), blurRadius: 5)
+            ],
             borderRadius: BorderRadius.circular(30)),
       ),
       onPressed: onPress,

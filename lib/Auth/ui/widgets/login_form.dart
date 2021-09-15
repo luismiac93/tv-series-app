@@ -7,13 +7,12 @@ class LoginForm extends StatelessWidget {
   final TextEditingController nameController;
   final TextEditingController passwordController;
   final VoidCallback onPress;
-  const LoginForm({
-    Key? key,
-    required this.nameController,
-    required this.passwordController,
-    required this.onPress
-  }) : super(key: key);
-
+  const LoginForm(
+      {Key? key,
+      required this.nameController,
+      required this.passwordController,
+      required this.onPress})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +58,9 @@ class LoginForm extends StatelessWidget {
                 height: 100,
               ),
               CustomButton(
-                AppColors.white,
-                'Log in',
-                onPress,
+                color: AppColors.white,
+                title: 'Log in',
+                onPress: onPress,
               ),
               const SizedBox(
                 height: 40,

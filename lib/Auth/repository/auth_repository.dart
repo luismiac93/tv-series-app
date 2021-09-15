@@ -34,7 +34,7 @@ class AuthRepository with ChangeNotifier {
     authenticated = false;
     if (resp) {
       user = User(name, "");
-      await this._guardarToken(name);
+      await _guardarToken(name);
       return true;
     } else {
       return false;
@@ -42,7 +42,7 @@ class AuthRepository with ChangeNotifier {
   }
 
   Future<bool> isLoggedIn() async {
-    final token = await this._storage.read(key: 'token') ?? "";
+    final token = await _storage.read(key: 'token') ?? "";
 
     if (token.isNotEmpty) {
       user = User(token, "");

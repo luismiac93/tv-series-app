@@ -29,14 +29,15 @@ class WelcomeScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CustomButton(AppColors.primary, 'Sign up', () {}),
+          CustomButton(
+              color: AppColors.primary, title: 'Sign up', onPress: () {}),
           const SizedBox(
             height: 30,
           ),
           CustomButton(
-            AppColors.white,
-            'Log in',
-            () => Navigator.pushNamed(context, 'login'),
+            color: AppColors.white,
+            title: 'Log in',
+            onPress: () => Navigator.pushNamed(context, 'login'),
           ),
           const SizedBox(
             height: 30,
