@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tv_series_app/Auth/repository/auth_repository.dart';
 import 'package:tv_series_app/Auth/ui/screens/welcome_screen.dart';
 import 'package:tv_series_app/TVSeries/ui/screens/home_screen.dart';
 import 'package:tv_series_app/utils/app_colors.dart';
@@ -35,14 +37,16 @@ class SplashScreen extends StatelessWidget {
   }
 
   Future checkLoginState(BuildContext context) async {
-    if(true){
-          Navigator.pushReplacement(
+    final authRepository = Provider.of<AuthRepository>(context, listen: false);
+    final authenticated = await authRepository.isLoggedIn();
+    if (authenticated) {
+      Navigator.pushReplacement(
           context,
           PageRouteBuilder(
               pageBuilder: (_, __, ___) => HomeScreen(),
               transitionDuration: Duration(milliseconds: 0)));
-    }else{
-                Navigator.pushReplacement(
+    } else {
+      Navigator.pushReplacement(
           context,
           PageRouteBuilder(
               pageBuilder: (_, __, ___) => WelcomeScreen(),

@@ -42,9 +42,9 @@ class AuthRepository with ChangeNotifier {
   }
 
   Future<bool> isLoggedIn() async {
-    final token = await this._storage.read(key: 'token');
+    final token = await this._storage.read(key: 'token') ?? "";
 
-    if (token!.length > 0) {
+    if (token.isNotEmpty) {
       user = User(token, "");
       await _guardarToken(token);
       return true;
