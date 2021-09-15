@@ -6,8 +6,6 @@ final List<User> userfake = [
 ];
 
 bool fakeApi(String name, String password) {
-  print(name);
-  print(password);
   try {
     final user =
         userfake.any((user) => user.name == name && user.password == password);
