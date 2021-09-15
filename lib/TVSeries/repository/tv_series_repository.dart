@@ -14,7 +14,7 @@ class TVSeriesRepository with ChangeNotifier {
   int _popularPage = 0;
 
   TVSeriesRepository() {
-    getPopularMovies();
+    getPopularSeries();
   }
 
   Future<String> _getJsonData(String endpoint, [int page = 1]) async {
@@ -24,7 +24,7 @@ class TVSeriesRepository with ChangeNotifier {
     return response.body;
   }
 
-  getPopularMovies() async {
+  getPopularSeries() async {
     _popularPage++;
 
     final jsonData = await _getJsonData('3/tv/popular', _popularPage);

@@ -58,7 +58,7 @@ class Series {
   });
 
   String? backdropPath;
-  DateTime? firstAirDate;
+  String? firstAirDate;
   List<int>? genreIds;
   int? id;
   String? name;
@@ -71,10 +71,26 @@ class Series {
   double? voteAverage;
   int? voteCount;
 
+  String? heroId;
+
+  get fullPosterImg {
+    if (this.posterPath != null)
+      return 'https://image.tmdb.org/t/p/w500${this.posterPath}';
+
+    return 'https://i.stack.imgur.com/GNhxO.png';
+  }
+
+  get fullBackdropPath {
+    if (this.backdropPath != null)
+      return 'https://image.tmdb.org/t/p/w500${this.backdropPath}';
+
+    return 'https://i.stack.imgur.com/GNhxO.png';
+  }
+
   factory Series.fromJson(Map<String, dynamic> json) => Series(
         backdropPath:
             json["backdrop_path"] == null ? null : json["backdrop_path"],
-        firstAirDate: DateTime.parse(json["first_air_date"]),
+        firstAirDate: json["first_air_date"],
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         id: json["id"],
         name: json["name"],
@@ -90,8 +106,7 @@ class Series {
 
   Map<String, dynamic> toJson() => {
         "backdrop_path": backdropPath == null ? null : backdropPath,
-        "first_air_date":
-            "${firstAirDate!.year.toString().padLeft(4, '0')}-${firstAirDate!.month.toString().padLeft(2, '0')}-${firstAirDate!.day.toString().padLeft(2, '0')}",
+        "first_air_date": firstAirDate == null ? null : firstAirDate,
         "genre_ids": List<dynamic>.from(genreIds!.map((x) => x)),
         "id": id,
         "name": name,
