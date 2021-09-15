@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:tv_series_app/Auth/repository/auth_repository.dart';
 import 'package:tv_series_app/TVSeries/repository/tv_series_repository.dart';
+import 'package:tv_series_app/TVSeries/repository/ui_repository.dart';
 import 'package:tv_series_app/routes/routes.dart';
 import 'package:tv_series_app/theme/theme.dart';
 
@@ -21,7 +22,10 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (BuildContext context) => TVSeriesRepository(),
           lazy: false,
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (BuildContext context) => UIRepository(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
