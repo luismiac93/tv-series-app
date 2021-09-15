@@ -15,26 +15,33 @@ class WelcomeScreen extends StatelessWidget {
         children: [
           const WelcomeBackground(),
           const WelcomeTitle("Welcome!"),
-          Container(
-            margin: const EdgeInsets.only(top: 150),
-            width: double.infinity,
-            height: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CustomButton(AppColors.primary, 'Sign up', () {}),
-                const SizedBox(
-                  height: 30,
-                ),
-                CustomButton(AppColors.white, 'Log in',
-                    () => Navigator.pushNamed(context, 'login')),
-                const SizedBox(
-                  height: 30,
-                ),
-                const CustomTextButton("Forgot password?"),
-              ],
-            ),
-          )
+          _buttonsScreen(context)
+        ],
+      ),
+    );
+  }
+
+  Container _buttonsScreen(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 150),
+      width: double.infinity,
+      height: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CustomButton(AppColors.primary, 'Sign up', () {}),
+          const SizedBox(
+            height: 30,
+          ),
+          CustomButton(
+            AppColors.white,
+            'Log in',
+            () => Navigator.pushNamed(context, 'login'),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          const CustomTextButton("Forgot password?"),
         ],
       ),
     );
