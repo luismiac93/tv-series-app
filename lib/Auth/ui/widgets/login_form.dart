@@ -30,8 +30,7 @@ class LoginForm extends StatelessWidget {
             children: [
               Container(
                 width: double.infinity,
-                margin: const EdgeInsets.only(
-                    top: 20, right: 20, bottom: 30),
+                margin: const EdgeInsets.only(top: 20, right: 20, bottom: 30),
                 alignment: Alignment.centerRight,
                 child: IconButton(
                   onPressed: () => Navigator.pop(context),
@@ -60,7 +59,9 @@ class LoginForm extends StatelessWidget {
               CustomButton(
                 AppColors.white,
                 'Log in',
-                () {},
+                () {
+                  Navigator.pushNamed(context, 'home');
+                },
               ),
               const SizedBox(
                 height: 40,
