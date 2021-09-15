@@ -8,6 +8,8 @@ import 'package:tv_series_app/TVSeries/ui/screens/recent_screen.dart';
 import 'package:tv_series_app/TVSeries/ui/widgets/custom_bottom_navigation_bar.dart';
 import 'package:tv_series_app/TVSeries/ui/widgets/header_home.dart';
 import 'package:tv_series_app/TVSeries/ui/widgets/series_slider.dart';
+import 'package:tv_series_app/TVSeries/ui/widgets/vertical_series_slider.dart';
+import 'package:tv_series_app/utils/app_colors.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -52,6 +54,16 @@ class _HomeSlide extends StatelessWidget {
             series: tvSeriesRepository.popularSeries, // populares,
             title: 'Popular', // opcional
             onNextPage: () => tvSeriesRepository.getPopularSeries(),
+          ),
+          // Slider recommendations series
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Divider( color: AppColors.gray,),
+          ),
+          VerticalSeriesSlider(
+            series: tvSeriesRepository.recommendationsSeries, // recommendations,
+            title: 'Recommendations', // opcional
+            onNextPage: () => tvSeriesRepository.getRecommendationsSeries(),
           ),
         ],
       ),
