@@ -41,7 +41,6 @@ class TVSeriesRepository with ChangeNotifier {
 
     final jsonData = await _getJsonData('3/tv/top_rated', _recommendationsPage);
     final recommendationsResponse = tvSeriesResponseFromJson(jsonData);
-    print('popularResponse: $recommendationsResponse');
     recommendationsSeries = [...recommendationsSeries, ...recommendationsResponse.results!];
     notifyListeners();
   }

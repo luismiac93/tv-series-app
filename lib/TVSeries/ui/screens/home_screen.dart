@@ -52,7 +52,7 @@ class _HomeSlide extends StatelessWidget {
           // Slider popular series
           SeriesSlider(
             series: tvSeriesRepository.popularSeries, // populares,
-            title: 'Popular', // opcional
+            title: 'Popular',
             onNextPage: () => tvSeriesRepository.getPopularSeries(),
           ),
           // Slider recommendations series
@@ -62,7 +62,7 @@ class _HomeSlide extends StatelessWidget {
           ),
           VerticalSeriesSlider(
             series: tvSeriesRepository.recommendationsSeries, // recommendations,
-            title: 'Recommendations', // opcional
+            title: 'Recommendations',
             onNextPage: () => tvSeriesRepository.getRecommendationsSeries(),
           ),
         ],

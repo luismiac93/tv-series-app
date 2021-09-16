@@ -127,11 +127,29 @@ class _SeriesPoster extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(color: AppColors.gray, fontSize: 11),
                 ),
-                            const SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
-                CustomButton(
-                    color: AppColors.primary, title: "Watch Now", onPress: () {}, fontSize: 14,size: 120,)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomButton(
+                      color: AppColors.primary,
+                      title: "Watch Now",
+                      onPress: () {},
+                      fontSize: 14,
+                      size: 120,
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.favorite_border,
+                        color: AppColors.gray,
+                        size: 30,
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           )
