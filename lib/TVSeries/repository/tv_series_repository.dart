@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
+import 'package:tv_series_app/TVSeries/models/details_serie_response.dart';
+import 'package:tv_series_app/TVSeries/models/seasons_serie_response.dart';
 import 'package:tv_series_app/TVSeries/models/series_response.dart';
 
 class TVSeriesRepository with ChangeNotifier {
@@ -41,7 +43,22 @@ class TVSeriesRepository with ChangeNotifier {
 
     final jsonData = await _getJsonData('3/tv/top_rated', _recommendationsPage);
     final recommendationsResponse = tvSeriesResponseFromJson(jsonData);
-    recommendationsSeries = [...recommendationsSeries, ...recommendationsResponse.results!];
+    recommendationsSeries = [
+      ...recommendationsSeries,
+      ...recommendationsResponse.results!
+    ];
     notifyListeners();
+  }
+
+  Future<SeasonsSerieResponse> getSeasonsEpisodes(int serieId) async {
+    final SeasonsSerieResponse seasonsList;
+    final jsonData = await this._getJsonData('/3/tv/$serieId');
+    final detailsResponse = detailsSerieResponseFromJson(jsonData);
+
+    final jsonDataSeasons = await this._getJsonData('/3/tv/$serieId/season/1');
+    final seasonsResponse = seasonsSerieResponseFromJson(jsonDataSeasons);
+    seasonsList = seasonsResponse;
+
+    return seasonsList;
   }
 }
