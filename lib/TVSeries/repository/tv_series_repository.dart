@@ -13,6 +13,7 @@ class TVSeriesRepository with ChangeNotifier {
 
   List<Series> popularSeries = [];
   List<Series> recommendationsSeries = [];
+  List<Series> favorites = [];
 
   int _popularPage = 0;
   int _recommendationsPage = 0;
@@ -60,5 +61,10 @@ class TVSeriesRepository with ChangeNotifier {
     seasonsList = seasonsResponse;
 
     return seasonsList;
+  }
+
+  addFavorite(Series serie){
+    favorites = [serie,...favorites];
+    notifyListeners();
   }
 }

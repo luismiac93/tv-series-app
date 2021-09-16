@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tv_series_app/TVSeries/models/series_response.dart';
+import 'package:tv_series_app/TVSeries/repository/tv_series_repository.dart';
 import 'package:tv_series_app/utils/app_colors.dart';
 import 'package:tv_series_app/widgets/custom_button.dart';
 
@@ -79,6 +81,8 @@ class _SeriesPoster extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tvSeriesRepository =
+        Provider.of<TVSeriesRepository>(context, listen: false);
     serie.heroId = heroId;
 
     return Container(
@@ -132,12 +136,15 @@ class _SeriesPoster extends StatelessWidget {
                     CustomButton(
                       color: AppColors.primary,
                       title: "Watch Now",
-                      onPress: () => Navigator.pushNamed(context, 'details', arguments: serie),
+                      onPress: () => Navigator.pushNamed(context, 'details',
+                          arguments: serie),
                       fontSize: 14,
                       size: 120,
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        tvSeriesRepository.addFavorite(serie);
+                      },
                       icon: Icon(
                         Icons.favorite_border,
                         color: AppColors.gray,

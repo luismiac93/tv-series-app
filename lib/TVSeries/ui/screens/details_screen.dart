@@ -11,6 +11,8 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Series serie = ModalRoute.of(context)!.settings.arguments as Series;
+        final tvSeriesRepository =
+        Provider.of<TVSeriesRepository>(context, listen: false);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -29,13 +31,25 @@ class DetailsScreen extends StatelessWidget {
                 const SizedBox(
                   width: 10,
                 ),
-                Hero(
-                  tag: serie.heroId!,
-                  child: Text(
-                    "${serie.name}",
-                    style: TextStyle(color: AppColors.white, fontSize: 18),
+                Expanded(
+                  child: Hero(
+                    tag: serie.heroId!,
+                    child: Text(
+                      "${serie.name}",
+                      style: TextStyle(color: AppColors.white, fontSize: 18),
+                    ),
                   ),
-                )
+                ),
+                IconButton(
+                  onPressed: () {
+                    tvSeriesRepository.addFavorite(serie);
+                  },
+                  icon: Icon(
+                    Icons.favorite_border,
+                    color: AppColors.gray,
+                    size: 30,
+                  ),
+                ),
               ],
             ),
             const SizedBox(
