@@ -20,12 +20,13 @@ class _CardSwiperState extends State<CardSwiper> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    if (this.widget.series.length == 0) {
+    if (widget.series.length == 0) {
       return Container(
         width: double.infinity,
         height: size.height * 0.5,
         child: Center(
-          child: CircularProgressIndicator(),
+          child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary)),
         ),
       );
     }
@@ -46,53 +47,51 @@ class _CardSwiperState extends State<CardSwiper> {
 
           serie.heroId = 'swiper-${serie.id}';
 
-          return GestureDetector(
-            onTap: () =>
-                Navigator.pushNamed(context, 'details', arguments: serie),
-            child: Hero(
-              tag: serie.heroId!,
-              child: Column(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: FadeInImage(
-                      placeholder: AssetImage('assets/images/no-image.jpg'),
-                      image: NetworkImage(serie.fullPosterImg),
-                      fit: BoxFit.cover,
-                    ),
+          return Hero(
+            tag: serie.heroId!,
+            child: Column(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: FadeInImage(
+                    placeholder: AssetImage('assets/images/no-image.jpg'),
+                    image: NetworkImage(serie.fullPosterImg),
+                    fit: BoxFit.cover,
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  selected == index
-                      ? Container(
-                          width: double.infinity,
-                          height: 180,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                serie.name!,
-                                style: TextStyle(
-                                    color: AppColors.white,
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                'IMDb: ${serie.voteAverage}',
-                                style: TextStyle(color: AppColors.gray),
-                              ),
-                              CustomButton(
-                                  color: AppColors.primary,
-                                  title: "Watch Now",
-                                  onPress: () {})
-                            ],
-                          ),
-                        )
-                      : Container()
-                ],
-              ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                selected == index
+                    ? Container(
+                        width: double.infinity,
+                        height: 180,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              serie.name!,
+                              style: TextStyle(
+                                  color: AppColors.white,
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              'IMDb: ${serie.voteAverage}',
+                              style: TextStyle(color: AppColors.gray),
+                            ),
+                            CustomButton(
+                                color: AppColors.primary,
+                                title: "Watch Now",
+                                onPress: () => Navigator.pushNamed(
+                                    context, 'details',
+                                    arguments: serie))
+                          ],
+                        ),
+                      )
+                    : Container()
+              ],
             ),
           );
         },

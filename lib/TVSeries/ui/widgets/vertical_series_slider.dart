@@ -87,20 +87,16 @@ class _SeriesPoster extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
-          GestureDetector(
-            onTap: () =>
-                Navigator.pushNamed(context, 'details', arguments: serie),
-            child: Hero(
-              tag: serie.heroId!,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: FadeInImage(
-                  placeholder: const AssetImage('assets/images/no-image.jpg'),
-                  image: NetworkImage(serie.fullPosterImg),
-                  width: 130,
-                  height: 190,
-                  fit: BoxFit.cover,
-                ),
+          Hero(
+            tag: serie.heroId!,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: FadeInImage(
+                placeholder: const AssetImage('assets/images/no-image.jpg'),
+                image: NetworkImage(serie.fullPosterImg),
+                width: 130,
+                height: 190,
+                fit: BoxFit.cover,
               ),
             ),
           ),
@@ -136,7 +132,7 @@ class _SeriesPoster extends StatelessWidget {
                     CustomButton(
                       color: AppColors.primary,
                       title: "Watch Now",
-                      onPress: () {},
+                      onPress: () => Navigator.pushNamed(context, 'details', arguments: serie),
                       fontSize: 14,
                       size: 120,
                     ),
