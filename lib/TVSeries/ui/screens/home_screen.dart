@@ -55,13 +55,37 @@ class _HomeSlide extends StatelessWidget {
             title: 'Popular',
             onNextPage: () => tvSeriesRepository.getPopularSeries(),
           ),
+          Container(
+            alignment: Alignment.centerRight,
+            child: TextButton(
+              style:
+                  TextButton.styleFrom(splashFactory: NoSplash.splashFactory),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "See All",
+                    style: TextStyle(color: AppColors.primary),
+                  ),
+                  Icon(
+                    Icons.chevron_right,
+                    color: AppColors.primary,
+                  ),
+                ],
+              ),
+              onPressed: () => Navigator.pushNamed(context, 'serie'),
+            ),
+          ),
           // Slider recommendations series
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Divider( color: AppColors.gray,),
+            child: Divider(
+              color: AppColors.gray,
+            ),
           ),
           VerticalSeriesSlider(
-            series: tvSeriesRepository.recommendationsSeries, // recommendations,
+            series:
+                tvSeriesRepository.recommendationsSeries, // recommendations,
             title: 'Recommendations',
             onNextPage: () => tvSeriesRepository.getRecommendationsSeries(),
           ),
