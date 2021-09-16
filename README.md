@@ -1,16 +1,19 @@
-# tv_series_app
+# tv_series_app by `Luis Miguel Aza` 
 
-A new Flutter project.
+Flutter project `Tv Series App`.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+It is a mobile application of television series, in which the user can enter, see the most popular and recommended series of the moment, can also mark some as favorites, see recent series, details, recent series and their details.  recommended series of the moment, can also mark some as favorites, view recent series, details, recent series and their details.
 
-A few resources to get you started if this is your first Flutter project:
+## Stack
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- Flutter
+- [themoviedb](https://api.themoviedb.org/3)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## packages
+
+- provider
+- flutter_secure_storage
+- http
+- card_swiper
