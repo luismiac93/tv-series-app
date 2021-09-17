@@ -1,30 +1,18 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:tv_series_app/main.dart';
+import 'package:tv_series_app/Auth/ui/widgets/welcome_title.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
-
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  Widget TestWidget = MediaQuery(
+      data: const MediaQueryData(),
+      child:  MaterialApp(
+          home:  Stack(
+        children: const [WelcomeTitle("Welcome")],
+      )));
+  testWidgets('WelcomeTitle has a title Welcome and a Text Widget', (WidgetTester tester) async {
+    await tester.pumpWidget(TestWidget);
+    expect(find.text('Welcome'), findsOneWidget);
+    var text = find.byType(Text);
+    expect(text, findsOneWidget);
   });
 }
