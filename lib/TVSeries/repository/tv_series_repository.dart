@@ -14,9 +14,11 @@ class TVSeriesRepository with ChangeNotifier {
   List<Series> popularSeries = [];
   List<Series> recommendationsSeries = [];
   List<Series> favorites = [];
+  List<Series> tvAiringTodaySeries = [];
 
   int _popularPage = 0;
   int _recommendationsPage = 0;
+  int _tvTodayPage = 0;
 
   TVSeriesRepository() {
     getPopularSeries();
@@ -53,8 +55,9 @@ class TVSeriesRepository with ChangeNotifier {
 
   Future<SeasonsSerieResponse> getSeasonsEpisodes(int serieId) async {
     final SeasonsSerieResponse seasonsList;
-    final jsonData = await this._getJsonData('/3/tv/$serieId');
-    final detailsResponse = detailsSerieResponseFromJson(jsonData);
+    //TODO: serach more seasons
+    // final jsonData = await this._getJsonData('/3/tv/$serieId');
+    // final detailsResponse = detailsSerieResponseFromJson(jsonData);
 
     final jsonDataSeasons = await this._getJsonData('/3/tv/$serieId/season/1');
     final seasonsResponse = seasonsSerieResponseFromJson(jsonDataSeasons);
@@ -63,8 +66,21 @@ class TVSeriesRepository with ChangeNotifier {
     return seasonsList;
   }
 
-  addFavorite(Series serie){
-    favorites = [serie,...favorites];
+  getTVAiringTodaySeries() async {
+    _tvTodayPage++;
+
+    final jsonData = await _getJsonData('3/tv/airing_today', _tvTodayPage);
+    final tvAiringTodayResponse = tvSeriesResponseFromJson(jsonData);
+    tvAiringTodaySeries = [
+      ...tvAiringTodaySeries,
+      ...tvAiringTodayResponse.results!
+    ];
+    print("chesee");
+    notifyListeners();
+  }
+
+  addFavorite(Series serie) {
+    favorites = [serie, ...favorites];
     notifyListeners();
   }
 }
