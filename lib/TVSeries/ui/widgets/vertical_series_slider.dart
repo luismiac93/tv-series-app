@@ -139,7 +139,7 @@ class _SeriesPoster extends StatelessWidget {
                       onPress: () => Navigator.pushNamed(context, 'details',
                           arguments: serie),
                       fontSize: 14,
-                      size: 120,
+                      size: 110,
                     ),
                     IconButton(
                       onPressed: () {
